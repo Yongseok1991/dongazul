@@ -9,4 +9,5 @@ public class SignInVO {
 	private String bobom;
 	private String ody;
 	private String SeHwa;
+	private String ody2;
 }
