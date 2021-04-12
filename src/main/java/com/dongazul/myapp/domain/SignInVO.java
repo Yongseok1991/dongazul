@@ -7,4 +7,5 @@ public class SignInVO {
 	private String email;
 	private String passwd;
 	private String bobom;
+	private String ody;
 }
