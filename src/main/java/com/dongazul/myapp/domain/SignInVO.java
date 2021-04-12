@@ -8,4 +8,5 @@ public class SignInVO {
 	private String passwd;
 	private String bobom;
 	private String ody;
+	private String SeHwa;
 }
