@@ -9,3 +9,4 @@ public class SignInVO {
 	private String passwd;
 	
 } // end class
+
