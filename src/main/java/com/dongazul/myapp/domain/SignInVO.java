@@ -6,4 +6,5 @@ import lombok.Value;
 public class SignInVO {
 	private String email;
 	private String passwd;
+	private String sd;
 }
