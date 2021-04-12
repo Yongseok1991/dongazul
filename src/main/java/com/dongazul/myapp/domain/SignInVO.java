@@ -1,3 +1,4 @@
+
 package com.dongazul.myapp.domain;
 
 import lombok.Value;
@@ -6,5 +7,5 @@ import lombok.Value;
 public class SignInVO {
 	private String email;
 	private String passwd;
-	private String sdhihi;
-}
+	
+} // end class
