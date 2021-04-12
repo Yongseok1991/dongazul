@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>페이지를 찾을 수 없습니다.</h2>
-	${exception2}
+
+	<h1>/WEB-INF/views/changePw.jsp</h1>
+	
 </body>
 </html>

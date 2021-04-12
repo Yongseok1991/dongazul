@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="memberMapper">
+	<!--회원가입 -->
+    <insert 
+    	parameterType="com.dongazul.myapp.domain.MemberVO"
+    	id="signUp">
+       INSERT INTO MEMBER (email, passwd, phonenumber)
+       VALUES ( #{email}, #{passwd}, #{phonenumber} )
+    </insert>
+    
+    <!--로그인-->
+    <select id="signIn"
+            resultType="com.dongazul.myapp.domain.SignInVO">
+            SELECT email, passwd
+            FROM member
+            WHERE email = #{email}
+            AND  passwd = #{passwd}
+         </select>
+         
+      <!-- 이메일 중복체크 -->   
+     <select id="emailCheck" resultType="int">
+     	SELECT count(*) FROM member
+     	WHERE email = #{email}
+     </select>
+ </mapper>

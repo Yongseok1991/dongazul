@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>findId.jsp</title>
 </head>
 <body>
-<h2>페이지를 찾을 수 없습니다.</h2>
-	${exception2}
+	<h1>아이디 찾기 화면</h1>
+	<h1>/WEB-INF/views/login/findId.jsp</h1>
 </body>
 </html>
