@@ -10,4 +10,5 @@ public class SignInVO {
 	private String ody;
 	private String SeHwa;
 	private String ody2;
+	private String yang;
 }
