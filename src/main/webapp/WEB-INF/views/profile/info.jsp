@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>info.jsp</title>
 </head>
 <body>
-
+		<h1>프로필 화면</h1>
 		<h1>/WEB-ING/views/info.jsp</h1>
-
+		
 </body>
 </html>

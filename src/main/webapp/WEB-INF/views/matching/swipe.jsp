@@ -35,6 +35,10 @@
      </div>
      </c:if>
      
+     <form action="/member/dropOut" method="get">
+			<input type="submit" value="회원탈퇴">
+	 </form>
+     
      <c:if test= "${msg == false}">
         <p>로그인 실패 아이디와 비밀번호를 확인해주세요</p>
     </c:if>
