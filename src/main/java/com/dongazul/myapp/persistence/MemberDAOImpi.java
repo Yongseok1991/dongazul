@@ -1,7 +1,5 @@
 package com.dongazul.myapp.persistence;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dongazul.myapp.domain.MemberVO;
-import com.dongazul.myapp.domain.SignInVO;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -44,7 +41,7 @@ public class MemberDAOImpi implements MemberDAO {
 	} // register
 	// 로그인
 	@Override
-	public SignInVO signIn(SignInVO vo) throws Exception {
+	public MemberVO signIn(MemberVO vo) throws Exception {
 		log.info("signIn(vo) invoked.");
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -63,5 +60,12 @@ public class MemberDAOImpi implements MemberDAO {
 		return result;
 		}
 	}
-
+	@Override
+	public void memberUpdate(MemberVO vo) throws Exception {
+		log.info("memberUpdate(vo) invoked.");
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try(sqlSession) {
+		sqlSession.update("memberMapper.memberUpdate", vo);
+		}
+	}
 } // end class

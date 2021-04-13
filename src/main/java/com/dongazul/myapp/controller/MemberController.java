@@ -2,6 +2,8 @@
 
 import java.util.Objects;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,14 +83,16 @@ public class MemberController {
 		
 		// 비밀번호 변경 처리
 		@PostMapping("/changePw")
-		public void infoPost(String passwd) {
+		public String infoPost(MemberVO vo, HttpSession session) throws Exception {
 			
 			log.debug("infoPost() invoked.");
 			
-			Objects.requireNonNull(passwd);
+			service.memberUpdate(vo);
 			
-			log.info("\t+ passwd :" + passwd);
-		
+			session.invalidate();
+			
+			return "redirect:/login/signIn";
+	
 		} // infoPost
 		
 		

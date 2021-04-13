@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dongazul.myapp.domain.SignInVO;
+import com.dongazul.myapp.domain.MemberVO;
 import com.dongazul.myapp.service.MemberService;
 
 import lombok.NoArgsConstructor;
@@ -25,8 +25,8 @@ public class LoginController {
 	
 	@Autowired
 	MemberService service;
-	@Autowired
-	HttpSession session;
+
+	
 	
 	// 로그인 화면
 	@GetMapping("/signIn")
@@ -37,13 +37,13 @@ public class LoginController {
 	
 	// 로그인 처리
 	@PostMapping("/signIn")
-	public String signInPost(SignInVO vo,
+	public String signInPost(MemberVO vo,
 				HttpServletRequest req, RedirectAttributes rttr ) throws Exception {
 		log.debug("signInPost(vo, req, rttr) invoked.");
 		
-		session = req.getSession();
+		HttpSession session = req.getSession();
 		
-		SignInVO signIn = service.signIn(vo);
+		MemberVO signIn = service.signIn(vo);
 		
 		if(signIn == null) {
 			session.setAttribute("member", null);
@@ -53,27 +53,31 @@ public class LoginController {
 			
 		} else {
 			session.setAttribute("member", signIn);
+			
 		}
 	
 		return "redirect:/matching/swipe";
 	} // signInPost
 	
-	// 로그아웃 화면
+//	// 로그아웃 화면
+//	@GetMapping("/signOut")
+//	public String signOutGet() {
+//		log.debug("signOutGet() invoked.");
+//		
+//		session.invalidate();
+//		
+//		
+//	} // signOutGet
+	
+	// 로그아웃 처리
 	@GetMapping("/signOut")
-	public String signOutGet() {
-		log.debug("signOutGet() invoked.");
+	public String signOutGet(HttpSession session) {
+		
+		log.debug("signOutGet(session) invoked.");
 		
 		session.invalidate();
 		
 		return "redirect:/login/signIn";
-	} // signOutGet
-	
-	// 로그아웃 처리
-	@PostMapping("/signOut")
-	public void signOutPost(String id) {
-		
-		log.debug("signOutPost(id) invoked.");
-		log.info("\t+ id : " + id);
 	} // signOutPost
 	
    // 아이디 찾기 화면
