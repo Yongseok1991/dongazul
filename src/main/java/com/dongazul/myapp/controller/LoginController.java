@@ -80,28 +80,53 @@ public class LoginController {
 		return "redirect:/login/signIn";
 	} // signOutPost
 	
-   // 아이디 찾기 화면
+	// 아이디 찾기 화면
    @GetMapping("/findId")
    public void findIdGet() {
       log.debug("findIdGet() invoked.");      
    } // findIdGet
    
    // 아아디 찾기 처리
-   @PostMapping("/findId")
-   public void findIdPost(Integer phoneNumber) {
+   @PostMapping("/findIdResult")
+   public String findIdPost(Integer phonenumber, HttpSession session) throws Exception {
       log.debug("findIdPost(phoneNumber) invoked.");
+      
+      String result = service.findId(phonenumber);
+      
+      
+      
+      if(result != null) {
+    	  session.setAttribute("find", result);
+    	  return "/login/findIdResult";
+      } else {
+    	  return "redirect:/login/findId";
+      }
+      
    } // findIdPost
    
    // 비밀번호 찾기 화면
    @GetMapping("/findPw")
    public void findPwGet() {
       log.debug("findPwGet() invoked.");
+      
+      
    } // findPwGet
    
    // 비밀번호 찾기 처리
-   @PostMapping("/findPw")
-   public void findPwPost(String email) {
+   @PostMapping("/findPwResult")
+   public String findPwPost(String email, HttpSession session) throws Exception {
       log.debug("findPwPost(email) invoked.");
+      
+      String pw = service.findPw(email);
+      
+      
+      
+      if(pw != null) {
+    	  session.setAttribute("findPw", pw);
+    	  return "/login/findPwResult";
+      } else {
+    	  return "redirect:/login/findPw";
+      }
       
    } // findPwPost
 

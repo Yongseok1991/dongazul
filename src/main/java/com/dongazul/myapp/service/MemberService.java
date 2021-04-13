@@ -13,6 +13,13 @@ public interface MemberService {
 	public int emailCheck(MemberVO vo) throws Exception;
 	// 회원 정보 수정
 	public void memberUpdate(MemberVO vo) throws Exception;
+	// 회원탈퇴
+	public void memberDelete(MemberVO vo) throws Exception;
 	
+	// 아이디 찾기
+	public String findId(Integer phonenumber) throws Exception;
+	
+	// 비밀번호 찾기
+	public String findPw(String email) throws Exception;
  
 } // end class

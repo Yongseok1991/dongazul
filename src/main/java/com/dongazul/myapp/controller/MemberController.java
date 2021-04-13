@@ -1,7 +1,5 @@
  package com.dongazul.myapp.controller;
 
-import java.util.Objects;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dongazul.myapp.domain.MemberVO;
 import com.dongazul.myapp.service.MemberService;
@@ -95,22 +94,35 @@ public class MemberController {
 	
 		} // infoPost
 		
-		
+		// 회원탈퇴화면 보여주기
 		@GetMapping("/dropOut")
 		public void dropOutGet() {
 			
 			log.debug("dropOutGet() invoked.");
 		
 		} // dropOutGet
-		
+		// 회원탈퇴 처리
 		@PostMapping("/dropOut")
-		public void dropOutPost(String email) {
+		public String dropOutPost(
+				MemberVO vo,
+				HttpSession session,
+				RedirectAttributes rttr
+				) throws Exception {
 			
-			log.debug("dropOutPost() invoked.");
+			// 세션에 있는 member를 가져와 member변수에 넣어줍니다.
+			MemberVO member = (MemberVO) session.getAttribute("member");
+			// 세션에있는 비밀번호
+			String sessionPass = member.getPasswd();
+			// vo로 들어오는 비밀번호
+			String voPass = vo.getPasswd();
 			
-			Objects.requireNonNull(email);
-			
-			log.info("\t+ email :" + email);
+			if(!(sessionPass.equals(voPass))) {
+				rttr.addFlashAttribute("msg", false);
+				return "redirect:/member/dropout";
+			}
+			service.memberDelete(vo);
+			session.invalidate();
+			return "redirect:/login/signIn";
 		
  	} // dropOutPost
 	   
