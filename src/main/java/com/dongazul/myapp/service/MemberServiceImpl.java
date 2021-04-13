@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongazul.myapp.domain.MemberVO;
-import com.dongazul.myapp.domain.SignInVO;
 import com.dongazul.myapp.persistence.MemberDAO;
 
 import lombok.NoArgsConstructor;
@@ -32,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 로그인
 	@Override
-	public SignInVO signIn(SignInVO vo) throws Exception {
+	public MemberVO signIn(MemberVO vo) throws Exception {
 		
 		log.info("signIn(vo) invoked.");
 		
@@ -46,6 +45,9 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.emailCheck(vo);
 		return result;
 	}
-
 	
+	@Override
+	public void memberUpdate(MemberVO vo) throws Exception{
+		dao.memberUpdate(vo);
+	}
 } // end class

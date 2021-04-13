@@ -1,13 +1,11 @@
-
-package com.dongazul.myapp.domain;
-
-import lombok.Value;
-
-@Value
-public class SignInVO {
-	private String email;
-	private String passwd;
-	private String yang;
-	
-} // end class
-
+//
+//package com.dongazul.myapp.domain;
+//
+//import lombok.Value;
+//
+//@Value
+//public class SignInVO {
+//	private String email;
+//	private String passwd;
+//} // end class
+//
