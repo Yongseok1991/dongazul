@@ -15,11 +15,8 @@
 
 </head>
 
-<script type="text/javascript">
-$("#registerBtn").on("click", function(){
-	location.href="/member/signUp";
-})
-</script>
+
+
 <body>
     <form action="/login/signIn" method="POST">
         <c:if test="${number == null}">
@@ -38,17 +35,17 @@ $("#registerBtn").on("click", function(){
        <div> 
         <input type="submit" value="로그인" >
        </div> 
-        
     </c:if>
-    <div> 
-        <button id="registerBtn" type="button">회원가입</button>
-       </div> 
+    
+  
     
     <c:if test= "${msg == false}">
         <p>로그인 실패 아이디와 비밀번호를 확인해주세요</p>
     </c:if>
- 
-     
+</form>
+
+	 <form action="/member/signUp" method="GET">
+        <input type="submit" value="회원가입"/>
     </form>
 </body>
 </html>

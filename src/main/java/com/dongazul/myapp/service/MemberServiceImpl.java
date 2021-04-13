@@ -45,9 +45,14 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.emailCheck(vo);
 		return result;
 	}
-	
+	// 회원정보수정
 	@Override
 	public void memberUpdate(MemberVO vo) throws Exception{
 		dao.memberUpdate(vo);
+	}
+	
+	// 회원탈퇴
+	public void memberDelete(MemberVO vo) throws Exception {
+		dao.memberDelete(vo);
 	}
 } // end class

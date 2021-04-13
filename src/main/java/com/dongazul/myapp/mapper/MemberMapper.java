@@ -11,4 +11,8 @@ public interface MemberMapper {
 	public abstract int emailCheck(MemberVO vo) throws Exception;
 	//회원 정보 수정
 	public abstract void memberUpdate(MemberVO vo) throws Exception;
+	// 회원탈퇴
+	public abstract void memberDelete(MemberVO vo) throws Exception;
+	
+	
 } // interface
