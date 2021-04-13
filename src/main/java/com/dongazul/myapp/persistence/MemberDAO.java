@@ -18,4 +18,10 @@ public interface MemberDAO {
 	
 	// 회원탈퇴
 	public void memberDelete(MemberVO vo) throws Exception;
+	
+	// 이메일 찾기
+	public String findId(Integer phonenumber) throws Exception;
+	
+	// 비밀번호 찾기
+	public String findPw(String email) throws Exception;
 } // end interface

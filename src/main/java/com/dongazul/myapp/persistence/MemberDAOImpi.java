@@ -66,4 +66,33 @@ public class MemberDAOImpi implements MemberDAO {
 		
 		this.mapper.memberDelete(vo);
 	}
+	
+	
+	// 아이디 찾기
+	@Override
+	public String findId(Integer phonenumber) throws Exception {
+		log.debug("findId(vo) invoked.");
+		
+		assert this.mapper != null;
+		
+		log.info("\t+ mapper : " + mapper);
+		
+		return this.mapper.findId(phonenumber);
+		
+	} // findId
+	
+	
+	@Override
+	public String findPw(String email) throws Exception {
+		log.debug("findPw(email, phonenumber) invoked.");
+		
+		assert this.mapper != null;
+		
+		log.info("\t+ mapper : " + mapper);
+		
+		return this.mapper.findPw(email);
+		
+	} // findPw
+	
+	
 } // end class

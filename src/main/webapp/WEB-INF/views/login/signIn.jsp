@@ -47,5 +47,12 @@
 	 <form action="/member/signUp" method="GET">
         <input type="submit" value="회원가입"/>
     </form>
+     <form action="/login/findId" method="get">
+    	<input type="submit" value="아이디찾기">
+    </form>
+    
+     <form action="/login/findPw" method="get">
+    	<input type="submit" value="비밀번호찾기">
+    </form>
 </body>
 </html>

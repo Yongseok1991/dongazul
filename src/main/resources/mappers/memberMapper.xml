@@ -43,4 +43,20 @@
 		WHERE email = #{email}
 		  AND passwd = #{passwd} 
 	</delete>
+	
+	<!-- 이메일 찾기 -->
+    <select id="findId" resultType="String">
+     	SELECT email
+     	FROM member
+     	WHERE phonenumber = #{phonenumber}
+    </select>
+     
+    <!-- 비밀번호 찾기 -->
+    <select 
+     	id="findPw"
+     	resultType="String">
+     	SELECT passwd
+     	FROM member
+     	WHERE email = #{email}
+    </select>
  </mapper>

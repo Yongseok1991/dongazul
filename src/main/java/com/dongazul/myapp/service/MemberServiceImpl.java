@@ -55,4 +55,27 @@ public class MemberServiceImpl implements MemberService {
 	public void memberDelete(MemberVO vo) throws Exception {
 		dao.memberDelete(vo);
 	}
+	
+	// 이메일 찾기
+	@Override
+	public String findId(Integer phonenumber) throws Exception {
+		log.debug("findId(vo) invoked.");
+		
+		String find = dao.findId(phonenumber);
+		
+		return find;
+		
+	} // findId
+	
+	
+	// 비밀번호 찾기
+	@Override
+	public String findPw(String email) throws Exception {
+		log.debug("findPw(vo) invoked.");
+		
+		String pw = dao.findPw(email);
+		
+		return pw;
+		
+	} // findPw
 } // end class
