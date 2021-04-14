@@ -19,7 +19,7 @@ public class CommonExceptionHandler {
 	public String NumberFormatException(Exception e, Model model) {
 		log.debug("NumberFormatException(e, model) invoked.");
 		
-		log.error("1. Exception Type: " + e.getClass().getName());
+		log.error("1. Exception Types: " + e.getClass().getName());
 		log.error("2. Exception Message: " + e.getMessage());
 		// 결국 이 지정된 이름과 값을 Request Scope 공유영역에서 산출
 		model.addAttribute("exception", e);
