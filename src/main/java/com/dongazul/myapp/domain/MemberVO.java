@@ -6,7 +6,6 @@ import lombok.Value;
 public class MemberVO {
 	private String email;
 	private String passwd;
-	private Integer phonenumbers;
+	private Integer phonenumber;
 	
-	private String passwd1;
 } // end class

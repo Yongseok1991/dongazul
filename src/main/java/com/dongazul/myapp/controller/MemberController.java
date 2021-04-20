@@ -132,7 +132,7 @@ public class MemberController {
        public int emailCheck(MemberVO vo) throws Exception {
 		   
 	   int result = service.emailCheck(vo);
-	   
+	  
 	   return result;
 	} // emailCheck
 

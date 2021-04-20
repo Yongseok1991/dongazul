@@ -61,8 +61,28 @@
 	            $('#chkNotice').css('color', '#199894b3');
 	            $('#submit').attr('disabled', false);
 	        }
-	        //   비밀번호 틀리면 회원가입 버튼 기능 제거
+	      
 	    });
+
+		var emailChkVal = $("#emailCheck").val();
+		console.log("******* emailChkVal: ", emailChkVal);
+
+		if (emailChkVal == ' ' || emailChkVal == 'undefined') {
+			emailChkVal = 
+			console.log('*****emailChkVal ', emailChkVal);
+		}
+
+				if(emailChkVal == "N"){
+					
+					alert("중복확인 버튼을 눌러주세요.");
+					$("#submit").attr("disabled", true);
+			
+				}else if(emailChkVal == "Y"){
+					$("#regForm").submit();  
+					
+				
+			}
+			
 	 })
 
 	 function fn_emailCheck() {
@@ -77,10 +97,12 @@
 				if ($("#email").val() == '' || $("#email").val() == 'undefined') return;
 				if (data == 1) {
 					alert("중복된 이메일입니다.");
-					$('#submit').attr('disabled', false);
+				
 				} else if (data == 0) {
-					$("#email").attr("value", "Y");
 					alert("사용가능한 이메일입니다.");
+					$("#emailCheck").attr("VALUE", "Y");
+					$("#submit").attr("disabled", false);
+					
 				}
 			}
 		});
@@ -92,11 +114,11 @@
 	<body>
 	
 		<section id="container">
-			<form action="/member/signUp" method="POST">
+			<form action="/member/signUp" method="POST" id="regForm">
 				<div class="form-group has-feedback">
 					<label class="control-label" for="email">이메일주소</label>
 					<input class="form-control" type="email" id="email" name="email" />
-					<button class="emailCheck" type="button" id="emailCheck" onclick="fn_emailCheck();" value="N">중복확인</button>
+					<button class="emailCheck" type="button" id="emailCheck" onclick="fn_emailCheck();" VALUE="N">중복확인</button>
 				</div>
 				<div class="form-group has-feedback">
 					<label class="control-label" for="passwd">패스워드</label>

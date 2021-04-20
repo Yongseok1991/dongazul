@@ -22,7 +22,6 @@ public class MemberDAOImpi implements MemberDAO {
 	   @Setter(onMethod_=@Autowired)
 	   private MemberMapper mapper;
 	
-	
 	//회원가입
 	@Override
 	public void signUp(MemberVO vo) throws Exception {
@@ -31,17 +30,20 @@ public class MemberDAOImpi implements MemberDAO {
 		Objects.requireNonNull(mapper);
 		
 		log.info("\t+ mapper" + this.mapper);
+		
 		this.mapper.insert(vo);
-		  
-	} // register
+	} // signUp
+	
 	// 로그인
 	@Override
 	public MemberVO signIn(MemberVO vo) throws Exception {
+		
 		log.info("signIn(vo) invoked.");
 		
 		return this.mapper.select(vo);
 	
-	}
+	} // signIn
+	
 	// 이메일 중복 체크
 	@Override
 	public int emailCheck(MemberVO vo) throws Exception {
@@ -49,23 +51,25 @@ public class MemberDAOImpi implements MemberDAO {
 		log.info("emailCheck(vo) invoked.");	
 	
 		return this.mapper.emailCheck(vo);
-	}
+	} // emailCheck
+	
 	// 회원 정보 수정
 	@Override
 	public void memberUpdate(MemberVO vo) throws Exception {
+		
 		log.info("memberUpdate(vo) invoked.");
 		
 		this.mapper.memberUpdate(vo);
-	
-	}
+	} // memberUpdate
 	
 	// 회원탈퇴
 	@Override
 	public void memberDelete(MemberVO vo) throws Exception {
+		
 		log.info("memberUpdate(vo) invoked.");
 		
 		this.mapper.memberDelete(vo);
-	}
+	} // memberDelete
 	
 	
 	// 아이디 찾기
