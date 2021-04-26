@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongazul.myapp.domain.MemberVO;
-import com.dongazul.myapp.persistence.MemberDAO;
+import com.dongazul.myapp.mapper.MemberMapper;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
-	MemberDAO dao;
+	MemberMapper mapper;
 	
 	
 	// 회원가입
@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		log.info("signUp(vo) invoked.");
 		
-		dao.signUp(vo);
+		this.mapper.insert(vo);
 	} // signUp
 	
 	// 로그인
@@ -35,25 +35,25 @@ public class MemberServiceImpl implements MemberService {
 		
 		log.info("signIn(vo) invoked.");
 		
-		return dao.signIn(vo);	
+		return mapper.select(vo);	
 	} // signIn
 	
 	// 이메일 중복 체크
 	@Override
 	public int emailCheck(MemberVO vo) throws Exception {
 		log.info("emailCheck(vo) invoked.");
-		int result = dao.emailCheck(vo);
+		int result = this.mapper.emailCheck(vo);
 		return result;
 	}
 	// 회원정보수정
 	@Override
 	public void memberUpdate(MemberVO vo) throws Exception{
-		dao.memberUpdate(vo);
+		this.mapper.memberUpdate(vo);
 	}
 	
 	// 회원탈퇴
 	public void memberDelete(MemberVO vo) throws Exception {
-		dao.memberDelete(vo);
+		this.mapper.memberDelete(vo);
 	}
 	
 	// 이메일 찾기
@@ -61,9 +61,7 @@ public class MemberServiceImpl implements MemberService {
 	public String findId(Integer phonenumber) throws Exception {
 		log.debug("findId(vo) invoked.");
 		
-		String find = dao.findId(phonenumber);
-		
-		return find;
+		return this.mapper.findId(phonenumber);
 		
 	} // findId
 	
@@ -73,9 +71,7 @@ public class MemberServiceImpl implements MemberService {
 	public String findPw(String email) throws Exception {
 		log.debug("findPw(vo) invoked.");
 		
-		String pw = dao.findPw(email);
-		
-		return pw;
+		return this.mapper.findPw(email);
 		
 	} // findPw
 } // end class

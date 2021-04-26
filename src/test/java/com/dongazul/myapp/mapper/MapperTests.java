@@ -1,0 +1,69 @@
+package com.dongazul.myapp.mapper;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.dongazul.myapp.domain.ProfileDTO;
+
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+
+@Log4j
+@NoArgsConstructor
+
+//@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations= {
+         "file:src/main/webapp/WEB-INF/spring/root-context.xml"
+   })
+public class MapperTests {
+
+   
+   @Autowired
+   ProfileMapper mapper;
+   
+   
+   @Before
+   public void setup() {
+      log.debug("setup() invoked.");
+ 
+   }
+   
+   
+   @Test(timeout=1000)
+   public void testProfile() throws Exception {
+      log.debug("testInsert() invoked.");
+      
+      ProfileDTO dto = 
+            new ProfileDTO();
+      
+      dto.setEmail("arr0998@naver.com");
+      dto.setNickname("김용석");
+      dto.setGender("M");
+      dto.setZone("33");
+      dto.setAge(20);
+      dto.setIntroduce("222222222222");
+      dto.setIname("야구");
+      mapper.insertProfile(dto);
+      mapper.insertInterests(dto);
+   
+      
+   }  // testInsert
+   
+   
+   
+   
+   @After
+   public void tearDown() {
+      log.debug("tearDown() invoked.");
+      
+   } // tearDown
+   
+} // end class
+ 

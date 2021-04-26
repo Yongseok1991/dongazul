@@ -34,7 +34,7 @@ public class MemberController {
 	
 	// 회원가입 처리
 	@PostMapping("/signUp")
-	public String signUpPost(MemberVO vo) throws Exception {
+	public String signUpPost(MemberVO vo, RedirectAttributes rttrs) throws Exception {
 		
 		log.info("signUpPost(vo) invoked.");
 		
@@ -42,11 +42,11 @@ public class MemberController {
 		
 		try {
 			if(result==1) {
-				
+				rttrs.addFlashAttribute("msg","실패! 다시 확인해주세요");
 				return "/member/signUp";
 				
 			} else if(result==0) {
-				
+				rttrs.addFlashAttribute("msg","가입이 완료되었습니다.");
 				service.signUp(vo);
 			}
 		} catch(Exception e) {

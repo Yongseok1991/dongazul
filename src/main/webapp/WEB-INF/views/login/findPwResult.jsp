@@ -14,7 +14,7 @@
 <body>
 	<h1>비밀번호 찾기 결과</h1>
 	
-	비밀번호 : <%= session.getAttribute("findPw") %>
+	비밀번호 : ${FINDPW}
 	<hr>
 	<form action="/login/signIn" method="get">
 		<input type="submit" value="홈으로 돌아가기">

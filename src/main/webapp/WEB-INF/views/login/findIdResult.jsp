@@ -14,8 +14,8 @@
 <body>
 	<h1>아이디 찾기 결과</h1>
 	
-	입력한 전화번호 : <%= request.getParameter("phonenumber") %><br>
-	이메일 : <%= session.getAttribute("find") %>
+	입력한 전화번호 : ${memberVO.phonenumber}<br>
+	이메일 : ${FIND} 
 	<hr>
 	<form action="/login/signIn" method="get">
 		<input type="submit" value="홈으로 돌아가기">

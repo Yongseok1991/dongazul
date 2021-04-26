@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dongazul.myapp.domain.MemberVO;
+import com.dongazul.myapp.domain.ProfileDTO;
 import com.dongazul.myapp.service.MemberService;
+import com.dongazul.myapp.service.ProfileService;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -24,8 +26,10 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
 	
 	@Autowired
-	MemberService service;
+	MemberService memberservice;
 
+	@Autowired
+	ProfileService profileservice;
 	
 	
 	// 로그인 화면
@@ -37,25 +41,34 @@ public class LoginController {
 	
 	// 로그인 처리
 	@PostMapping("/signIn")
-	public String signInPost(MemberVO vo,
-				HttpServletRequest req, RedirectAttributes rttr ) throws Exception {
+	public String signInPost(
+				MemberVO vo,
+				String email,		
+				HttpServletRequest req, RedirectAttributes rttrs ) throws Exception {
 		log.debug("signInPost(vo, req, rttr) invoked.");
 		
 		HttpSession session = req.getSession();
-		
-		MemberVO signIn = service.signIn(vo);
+		 ProfileDTO select = this.profileservice.getProfile(email);
+		 
+		MemberVO signIn = this.memberservice.signIn(vo);
 		
 		if(signIn == null) {
 			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
+			rttrs.addFlashAttribute("msg", "로그인 실패 Email과 Password를 확인해주세요.");
 			
 			return "redirect:/login/signIn";
 			
 		} else {
 			session.setAttribute("member", signIn);
 			
-		}
-	
+			if(select == null) {
+				return "profile/create";
+			} else {
+				 session.setAttribute("PROFILE", select);
+				 
+			}
+		} 
+		rttrs.addFlashAttribute("msg", "로그인이 완료되었습니다.");
 		return "redirect:/matching/swipe";
 	} // signInPost
 	
@@ -88,15 +101,13 @@ public class LoginController {
    
    // 아아디 찾기 처리
    @PostMapping("/findIdResult")
-   public String findIdPost(Integer phonenumber, HttpSession session) throws Exception {
+   public String findIdPost(MemberVO vo, Integer phonenumber, HttpSession session) throws Exception {
       log.debug("findIdPost(phoneNumber) invoked.");
       
-      String result = service.findId(phonenumber);
-      
-      
+      String result = memberservice.findId(phonenumber);
       
       if(result != null) {
-    	  session.setAttribute("find", result);
+    	  session.setAttribute("FIND", result);
     	  return "/login/findIdResult";
       } else {
     	  return "redirect:/login/findId";
@@ -117,12 +128,12 @@ public class LoginController {
    public String findPwPost(String email, HttpSession session) throws Exception {
       log.debug("findPwPost(email) invoked.");
       
-      String pw = service.findPw(email);
+      String pw = memberservice.findPw(email);
       
       
       
       if(pw != null) {
-    	  session.setAttribute("findPw", pw);
+    	  session.setAttribute("FINDPW", pw);
     	  return "/login/findPwResult";
       } else {
     	  return "redirect:/login/findPw";

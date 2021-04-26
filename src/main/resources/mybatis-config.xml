@@ -7,5 +7,6 @@
   
   <mappers>
   <mapper resource="mappers/memberMapper.xml"/>
+  <mapper resource="mappers/profileMapper.xml"/> 
   </mappers>
 </configuration>
