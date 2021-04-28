@@ -5,7 +5,7 @@ import com.dongazul.myapp.domain.ProfileDTO;
 public interface ProfileService {
 	
 	// 프로필 생성
-	public abstract void craeteProfile(ProfileDTO dto) throws Exception;
+	public abstract boolean craeteProfile(ProfileDTO dto) throws Exception;
 	// 프로필 조회
 	public abstract ProfileDTO getProfile(String email) throws Exception;
 

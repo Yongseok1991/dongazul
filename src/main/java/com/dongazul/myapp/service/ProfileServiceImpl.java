@@ -20,17 +20,22 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Transactional
 	@Override
-	public void craeteProfile(ProfileDTO dto) throws Exception {
+	public boolean craeteProfile(ProfileDTO dto) throws Exception {
 		
 		log.info("craeteProfile(dto) invoked.");
-		
-		this.mapper.insertProfile(dto);
-		this.mapper.insertInterests(dto);
 	
+			this.mapper.insertInterests(dto);
+			this.mapper.insertProfile(dto);
+			return true;
+
 	} // createProfile
 
 	@Override
 	public ProfileDTO getProfile(String email) throws Exception {
+		log.info("getProfile(email) invoked.");
+		
+		log.info("\t+ email :" + email);
+		
 		return this.mapper.selectProfile(email);
 	} // getProfile
 

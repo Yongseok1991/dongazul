@@ -1,11 +1,12 @@
 package com.dongazul.myapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dongazul.myapp.domain.ProfileDTO;
+import com.dongazul.myapp.service.ProfileService;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,12 +22,13 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class MatchingController {
 
+	@Autowired
+	ProfileService profileService;
 	
 	@GetMapping("/swipe")
-	public void swipeGet() {
+	public void swipeGet() throws Exception {
 		log.debug("swipeGet() invoked.");
 		
-//		return "matching/swipe";
 	} // swipeGet
 	
 	

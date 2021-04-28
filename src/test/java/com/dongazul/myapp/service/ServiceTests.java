@@ -32,21 +32,21 @@ public class ServiceTests {
 		log.info("\t+ service: " + service);
 	} // setup
 	
-	@Test
-	public void testGetList() throws Exception {
-		log.debug("testGetList() invoked.");
-		ProfileDTO profile = new ProfileDTO(
-				"arr0998@naver.com",
-				"용돌",
-				20,
-				"M",
-				"일산",
-				"안녕하세요", 
-				"독서"
-				);
-		this.service.craeteProfile(profile);
-				
-	} // testGetList
+//	@Test
+//	public void testGetList() throws Exception {
+//		log.debug("testGetList() invoked.");
+//		ProfileDTO profile = new ProfileDTO(
+//				"arr0998@naver.com",
+//				"용돌",
+//				20,
+//				"M",
+//				"일산",
+//				"안녕하세요", 
+//				"독서"
+//				);
+//		this.service.craeteProfile(profile);
+//				
+//	} // testGetList
 	
 	
 	@After

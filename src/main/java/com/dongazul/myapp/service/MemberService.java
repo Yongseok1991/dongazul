@@ -1,5 +1,8 @@
 package com.dongazul.myapp.service;
 
+import java.util.Date;
+
+import com.dongazul.myapp.domain.LoginDTO;
 import com.dongazul.myapp.domain.MemberVO;
 
 public interface MemberService {
@@ -7,7 +10,7 @@ public interface MemberService {
 	public void signUp(MemberVO vo) throws Exception;
 	
 	// 로그인
-	public MemberVO signIn(MemberVO vo) throws Exception;
+	public MemberVO signIn(LoginDTO dto) throws Exception;
 	
 	//이메일 중복 체크
 	public int emailCheck(MemberVO vo) throws Exception;
@@ -23,4 +26,12 @@ public interface MemberService {
 	// 비밀번호 찾기
 	public String findPw(String email) throws Exception;
  
+	// 자동로그인(Remember-Me) 기능이 on 되어있는 경우, 이 정보(자동로그인)를 업데이트.
+	public abstract void updateMemberWithRememberMe(
+					String email, String rememberme, Date rememberage) 
+							throws Exception;
+			
+	// 자동로그인 쿠키값(=세션ID)로 사용자를 찾아내는 메소드
+	public abstract MemberVO selectMemberWithRememberMe(String rememberme)
+				throws Exception;
 } // end class

@@ -22,6 +22,34 @@
             AND  passwd = #{passwd}
          </select>
          
+    <update
+    id="updateMemberWithRememberMe">
+
+      UPDATE member
+    SET
+        rememberme = #{rememberme, jdbcType=VARCHAR},
+        rememberage = #{rememberage, jdbcType=DATE}
+    WHERE
+        email = #{email}
+
+  </update>
+
+
+  <select
+    id="selectMemberWithRememberMe"
+    resultType="com.dongazul.myapp.domain.MemberVO">
+
+    SELECT
+      *
+    FROM
+        member
+    WHERE
+        rememberme = #{rememberme}
+        AND rememberage > sysdate
+        
+  </select>
+    
+         
     <!-- 회원정보수정 -->
     <update id="memberUpdate">
     	UPDATE member 

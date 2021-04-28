@@ -12,53 +12,6 @@
 <meta charset="UTF-8">
 <title>info.jsp</title>
 
-    <style>
-
-          #listBtn, #removeBtn, #modifyBtn {
-            width: 100px;
-            height: 30px;
-
-            border: 0;
-
-            font-size: 15px;
-            font-weight: bold;
-
-            color: white;
-            background-color: rgb(255, 177, 75);
-
-            cursor: pointer;
-          
-            margin-top: 10px;
-        }
-
-
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-    
-    <script>
-
-        $(function () {
-            console.clear();
-            console.log('jquery started.....');
-        
-            
-            $('#listBtn').on('click', function(e) { 
-                console.log('onclicked....');
-
-                self.location = '/board/listPerPage${cri.pagingUri}';  // GET
-            }); // onclick	
-			
-           
-            $('#modifyBtn').on('click', function() { 
-                console.log('onclicked....');
-
-                self.location = '/board/modify${cri.pagingUri}&bno=${board.bno}';  // GET
-            }); // onclick
-        }); // jq
-        
-    </script>
 
 </head>
 
@@ -128,21 +81,45 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="interests">Interests</label></td>
+                    <td><label for="hobby1">hobby1</label></td>
                     <td><input
                             type="text" 
-                            id="interests" 
-                            name="interests" 
+                            id="hobby1" 
+                            name="hobby1" 
                             size="20" 
-                            value="${__PROFILE__.iname}" 
+                            value="${__PROFILE__.hobby1}" 
                             readonly>
                     </td>
                 </tr>
-</table>
+                <tr>
+                    <td><label for="hobby2">hobby2</label></td>
+                    <td><input
+                            type="text" 
+                            id="hobby2" 
+                            name="hobby2" 
+                            size="20" 
+                            value="${__PROFILE__.hobby2}" 
+                            readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="hobby3">hobby3</label></td>
+                    <td><input
+                            type="text" 
+                            id="hobby3" 
+                            name="hobby3" 
+                            size="20" 
+                            value="${__PROFILE__.hobby3}" 
+                            readonly>
+                    </td>
+                </tr>
+            </table>
+
+           
    </div>
 
-    	
-   		
+       
+         
 
 </body>
 </html>

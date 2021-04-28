@@ -2,9 +2,12 @@ package com.dongazul.myapp.service;
 
 
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dongazul.myapp.domain.LoginDTO;
 import com.dongazul.myapp.domain.MemberVO;
 import com.dongazul.myapp.mapper.MemberMapper;
 
@@ -31,11 +34,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 로그인
 	@Override
-	public MemberVO signIn(MemberVO vo) throws Exception {
+	public MemberVO signIn(LoginDTO dto) throws Exception {
 		
 		log.info("signIn(vo) invoked.");
 		
-		return mapper.select(vo);	
+		return this.mapper.select(dto);	
 	} // signIn
 	
 	// 이메일 중복 체크
@@ -73,5 +76,31 @@ public class MemberServiceImpl implements MemberService {
 		
 		return this.mapper.findPw(email);
 		
+	}
+
+	@Override
+	public void updateMemberWithRememberMe(String email, String rememberme, Date rememberage) throws Exception {
+		log.debug("updateMemberWithRememberMe(email, rememberme, rememberage) invoked.");
+		
+		log.info("\t+ userid: " + email);
+		log.info("\t+ rememberMe: " + rememberme);
+		log.info("\t+ rememberAge: " + rememberage);
+		
+		int modifiedMember = 
+			this.
+				mapper.
+				updateMemberWithRememberMe(email, rememberme, rememberage);
+		
+		log.info("\t+ modifiedUsers: " + modifiedMember);
+	}
+
+	@Override
+	public MemberVO selectMemberWithRememberMe(String rememberme) throws Exception {
+		log.debug("selectMemberWithRememberMe(rememberme) invoked.");
+		
+	MemberVO signIn = this.mapper.selectMemberWithRememberMe(rememberme);
+		log.info("\t+ user: " + signIn);
+		
+		return signIn;
 	} // findPw
 } // end class

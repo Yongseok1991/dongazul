@@ -15,6 +15,8 @@ public class ProfileDTO {
 	private String gender;
 	private String zone;
 	private String introduce;
-	private String iname;
+	private String hobby1;
+	private String hobby2;
+	private String hobby3;
 
 } // end class

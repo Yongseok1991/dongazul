@@ -15,7 +15,7 @@
 			background-repeat: no-repeat;
 		}
 	</style>
-	<link rel="stylesheet" href="/resources/signUp.css">
+	<link rel="stylesheet" href="/resources/css/signUp.css">
 </head>
 
 

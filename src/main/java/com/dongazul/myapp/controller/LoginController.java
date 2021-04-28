@@ -1,17 +1,24 @@
 package com.dongazul.myapp.controller;
 
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
+import com.dongazul.myapp.domain.LoginDTO;
 import com.dongazul.myapp.domain.MemberVO;
-import com.dongazul.myapp.domain.ProfileDTO;
+import com.dongazul.myapp.interceptor.AuthInterceptor;
 import com.dongazul.myapp.service.MemberService;
 import com.dongazul.myapp.service.ProfileService;
 
@@ -24,6 +31,11 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+	
+	
+	public static final String loginKey = "member";	
+	public static final String rememberMeKey = 
+					AuthInterceptor.rememberMeKey;
 	
 	@Autowired
 	MemberService memberservice;
@@ -40,56 +52,70 @@ public class LoginController {
 	} // signInGet
 	
 	// 로그인 처리
-	@PostMapping("/signIn")
+	@PostMapping("/signInPost")
 	public String signInPost(
-				MemberVO vo,
-				String email,		
-				HttpServletRequest req, RedirectAttributes rttrs ) throws Exception {
-		log.debug("signInPost(vo, req, rttr) invoked.");
+				LoginDTO dto,
+				String email,
+				HttpSession session, Model model, RedirectAttributes rttrs) throws Exception {
+		log.debug("signInPost(dto, session, model) invoked.");
 		
-		HttpSession session = req.getSession();
-		 ProfileDTO select = this.profileservice.getProfile(email);
-		 
-		MemberVO signIn = this.memberservice.signIn(vo);
 		
-		if(signIn == null) {
-			session.setAttribute("member", null);
-			rttrs.addFlashAttribute("msg", "로그인 실패 Email과 Password를 확인해주세요.");
+		MemberVO signIn = this.memberservice.signIn(dto);
+		
+		if(signIn != null) {
 			
-			return "redirect:/login/signIn";
+			model.addAttribute(loginKey, signIn);
 			
-		} else {
-			session.setAttribute("member", signIn);
-			
-			if(select == null) {
-				return "profile/create";
-			} else {
-				 session.setAttribute("PROFILE", select);
+			if(dto.isRememberme()) {
+				   String emails = dto.getEmail();
+				   String rememberme = session.getId();
+				   
+				   int timeAmount = 1000 * 60 * 24 * 7;
+				   Date rememberage =
+						   new Date(System.currentTimeMillis() + timeAmount);
+				   
+				   this.memberservice.
+				   updateMemberWithRememberMe(emails, rememberme, rememberage);
+				   
+				   log.info("\t+ 자동로그인 정보 업데이트 완료.");
 				 
-			}
-		} 
-		rttrs.addFlashAttribute("msg", "로그인이 완료되었습니다.");
-		return "redirect:/matching/swipe";
+				
+				   
+			} // if
+			
+		} // if
+		
+		return null;
 	} // signInPost
 	
-//	// 로그아웃 화면
-//	@GetMapping("/signOut")
-//	public String signOutGet() {
-//		log.debug("signOutGet() invoked.");
-//		
-//		session.invalidate();
-//		
-//		
-//	} // signOutGet
+
 	
 	// 로그아웃 처리
 	@GetMapping("/signOut")
-	public String signOutGet(HttpSession session) {
+	public String signOutGet(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			HttpSession session) throws Exception {
 		
 		log.debug("signOutGet(session) invoked.");
+		MemberVO signIn = (MemberVO) session.getAttribute(loginKey);
 		
 		session.invalidate();
 		
+		Cookie rememberMeCookie = 
+				WebUtils.getCookie(req, rememberMeKey);
+			
+		if(rememberMeCookie != null) {
+			rememberMeCookie.setPath("/");
+			rememberMeCookie.setMaxAge(0);	/*** 쿠키파괴를 위한 가장 중요한 설정 ***/
+				
+			res.addCookie(rememberMeCookie);	// 브라우저로 이 쿠키가 전송 => 파괴
+		} // if
+		
+		if(signIn != null) {
+			this.memberservice.
+			updateMemberWithRememberMe(signIn.getEmail(), null, null);			
+		} // if
 		return "redirect:/login/signIn";
 	} // signOutPost
 	

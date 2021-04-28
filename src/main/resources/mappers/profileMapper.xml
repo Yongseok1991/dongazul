@@ -18,19 +18,20 @@
     <insert
     	parameterType="com.dongazul.myapp.domain.ProfileDTO"
     	id="insertInterests">
-    	INSERT INTO interests ( email , iname)
-       VALUES ( #{email}, #{iname} )
+    	INSERT INTO interests ( email , hobby1, hobby2, hobby3)
+       VALUES ( #{email}, #{hobby1}, #{hobby2}, #{hobby3} )
     </insert>
+    
     <!-- 프로필 조회 -->
-      <select id="selectProfile"
-            resultType="com.dongazul.myapp.domain.ProfileDTO">
-            SELECT
-   			  *
-			FROM
-    		profile p, 
-    		interests i
-			WHERE
-    		p.email = i.email
+    <select id="selectProfile"
+          resultType="com.dongazul.myapp.domain.ProfileDTO">
+        SELECT
+		  *
+		FROM
+	  		profile p, 
+	  		interests i
+		WHERE
+	  		p.email = i.email
 			AND p.email = #{email}
-         </select>
+       </select>
 </mapper>

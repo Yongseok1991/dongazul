@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>signIn.jsp</title>
-<link rel="stylesheet" href="/resources/login.css">
+<link rel="stylesheet" href="/resources/css/login.css">
 </head>
 <script type="text/javascript">
 		
@@ -25,9 +25,10 @@
 	<div class="wrap">
 	
 	 <div class="login">
-            <h2>Log-in</h2>
-           
-    <form action="/login/signIn" method="POST">
+            <h2 id="title">Dongazul</h2>
+    <div id="outter">
+    <div class="between1"></div>       
+    <form action="/login/signInPost" method="POST">
         <c:if test="${number == null}">
     	<div class="login_id">
         <label for="email">E-mail</label>
@@ -38,9 +39,12 @@
         <input type="password" id="passwd" name="passwd" placeholder="Password"><br>
       </div>
       <div class="login_etc">
-        <label for="rememberMe">rememberMe</label>
-        <input type="radio" name="remember-me"><br>
+        <label for="rememberme">rememberMe</label>
+        <input type="checkbox" name="rememberme"><br>
        </div>
+       
+       <div class="between2"></div>
+       
        <div class="submit"> 
         <input type="submit" value="Sign-In" >
        </div> 
@@ -63,7 +67,7 @@
     	<input type="submit" value="forgot password?">
     </form>
     </div>
-    
+    </div>
     </div>
     </div>
 </body>
