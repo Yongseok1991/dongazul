@@ -37,7 +37,17 @@ public class ProfileServiceImpl implements ProfileService {
 		log.info("\t+ email :" + email);
 		
 		return this.mapper.selectProfile(email);
-	} // getProfile
+	}
+
+	@Override
+	public boolean modifyProfile(ProfileDTO dto) throws Exception {
+		log.info("modifyProfile(dto) invoked.");
+		
+		this.mapper.updateProfile(dto);
+		this.mapper.updateInterest(dto);
+		
+		return true;
+	} // modifyProfile
 
 
 } // end class

@@ -33,6 +33,9 @@ public class ProfileController {
 		
 	} // createGet
 	
+	
+	
+	
 	@PostMapping("/create")
 	public String createPost(ProfileDTO dto) throws Exception {
 		log.debug("createPost() invoked");
@@ -42,6 +45,9 @@ public class ProfileController {
 		return "redirect:/matching/swipe";
 		
 	} // createPost
+	
+	
+	
 	
 	@GetMapping("/info")
 	public String infoGet(String email, HttpSession session, RedirectAttributes rttrs) throws Exception {
@@ -62,9 +68,28 @@ public class ProfileController {
 		return "profile/info";
 	} // infoGet
 	
-	@PostMapping("/update")
+	
+	
+	@GetMapping("/update")
 	public void updatePost() {
 		log.debug("updatePost() invoked.");
+		
+	} // updatePost
+	
+	
+	
+	
+	@PostMapping("/update")
+	public String updatePost(ProfileDTO profile, RedirectAttributes rttrs) throws Exception {
+		log.debug("updatePost() invoked.");
+		
+		if(this.service.modifyProfile(profile)) {
+			
+			rttrs.addAttribute("__PROFILE__", profile.getEmail());
+			rttrs.addFlashAttribute("msg", "수정이 완료되었습니다.");
+		}
+		
+		return "redirect:/matching/swipe";
 	
 	} // updatePost
 	

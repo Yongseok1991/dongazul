@@ -34,4 +34,31 @@
 	  		p.email = i.email
 			AND p.email = #{email}
        </select>
+
+
+     <!-- 프로필 수정 -->
+     <update id="updateProfile">
+      UPDATE profile
+      SET
+         nickname = #{nickname},
+         age = #{age},
+         gender = #{gender},
+         zone = #{zone},
+         introduce = #{introduce}
+      
+      WHERE
+         email = #{email}
+     </update>
+
+     <update id="updateInterest">
+      UPDATE interests
+      SET
+         hobby1 = #{hobby1},
+         hobby2 = #{hobby2},
+         hobby3 = #{hobby3}
+
+      WHERE 
+        email = #{email}
+     </update>
+
 </mapper>

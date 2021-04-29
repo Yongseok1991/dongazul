@@ -33,7 +33,7 @@
         <div class="profile-main">
             <div class="photo-name">
                 <div class="photo-pro">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5206%2F2019%2F05%2F20%2F0000057338_001_20190520102208245.jpg&type=sc960_832" alt="img1" class="img1">
+                    <img src="http://www.newsworks.co.kr/news/photo/202011/500020_390256_4135.jpg" alt="img1" class="img1">
                 </div>
                 <h1 class="values">
                     ${__PROFILE__.nickname}, &nbsp;<span>${__PROFILE__.age}</span>
@@ -51,7 +51,7 @@
 
             </div>
             <div class="set">
-                <a href="/profile/update" class="fas fa-id-card fasrow profile-up"></a>
+                <a href="/profile/update?email=${member.email}" class="fas fa-id-card fasrow profile-up"></a>
                 <p>프로필 수정</p>
             </div>
             <div class="set">
@@ -59,6 +59,10 @@
                 <p>미디어 추가</p>
             </div>
         </div>
+
+        <form action="/matching/swipe" method="get">
+            <input type="submit" value="←">
+        </form>
         
     </div>  
 
