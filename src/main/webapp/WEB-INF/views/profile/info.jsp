@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 
 <!DOCTYPE html>
@@ -12,114 +10,57 @@
 <meta charset="UTF-8">
 <title>info.jsp</title>
 
+<!--fontawesome ---->
+<script src="https://kit.fontawesome.com/dc299fac74.js" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+
+<link rel="stylesheet" href="/resources/css/info.css">
 
 </head>
 
 <body>
 
-   
+    <div id="wrapper"> 
 
-    <div id="wrapper">
+        <nav class="navbar">
+            <a class="fas fa-fire" href="#"></a> <!-- 누르기 기능 삭제 -->
+            <a class="fas fa-comments" href="/chat/rooms"></a>
+            <a class="fas fa-user" href="/profile/info"></a>
+        </nav>
 
-
-            <table>
-                <tr>
-                    <td><label for="title">Nickname</label></td>
-                    <td><input
-                             type="text" 
-                             id="nickname" 
-                             name="nickname" 
-                             size="20" 
-                             value="${__PROFILE__.nickname}" 
-                             readonly>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><label for="age">Age</label></td>
-                    <td><input
-                            name="age"
-                            id="age"
-                            size="20"
-                            value="${__PROFILE__.age}"
-                            readonly>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><label for="gender">Gender</label></td>
-                    <td><input
-                            type="text" 
-                            id="gender" 
-                            name="gender" 
-                            size="20" 
-                            value="${__PROFILE__.gender}" 
-                            readonly>
-                    </td>
-                </tr>
+        <div class="profile-main">
+            <div class="photo-name">
+                <div class="photo-pro">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5206%2F2019%2F05%2F20%2F0000057338_001_20190520102208245.jpg&type=sc960_832" alt="img1" class="img1">
+                </div>
+                <h1 class="values">
+                    ${__PROFILE__.nickname}, &nbsp;<span>${__PROFILE__.age}</span>
+                </h1>
                 
-                <tr>
-                    <td><label for="introduce">Introduce</label></td>
-                    <td><input
-                            type="text" 
-                            id="introduce" 
-                            name="introduce" 
-                            size="20" 
-                            value="${__PROFILE__.introduce}" 
-                            readonly>
-                    </td>
-                </tr>
-                 <tr>
-                    <td><label for="zone">zone</label></td>
-                    <td><input
-                            type="text" 
-                            id="zone" 
-                            name="zone" 
-                            size="20" 
-                            value="${__PROFILE__.zone}" 
-                            readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="hobby1">hobby1</label></td>
-                    <td><input
-                            type="text" 
-                            id="hobby1" 
-                            name="hobby1" 
-                            size="20" 
-                            value="${__PROFILE__.hobby1}" 
-                            readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="hobby2">hobby2</label></td>
-                    <td><input
-                            type="text" 
-                            id="hobby2" 
-                            name="hobby2" 
-                            size="20" 
-                            value="${__PROFILE__.hobby2}" 
-                            readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="hobby3">hobby3</label></td>
-                    <td><input
-                            type="text" 
-                            id="hobby3" 
-                            name="hobby3" 
-                            size="20" 
-                            value="${__PROFILE__.hobby3}" 
-                            readonly>
-                    </td>
-                </tr>
-            </table>
+                <h3>좋아요</h3>
+            </div>
 
-           
-   </div>
+        </div>
+        <div class="setting">
+            <div class="set">
+                <!-- a를 원래 버튼으로 기능 넣어줘야함 -->
+                <a href="#" class="fas fa-cog fasrow"></a>
+                <p>설정</p>
 
-       
-         
+            </div>
+            <div class="set">
+                <a href="/profile/update" class="fas fa-id-card fasrow profile-up"></a>
+                <p>프로필 수정</p>
+            </div>
+            <div class="set">
+                <a href="/profile/create" class="fas fa-camera fasrow"></a>
+                <p>미디어 추가</p>
+            </div>
+        </div>
+        
+    </div>  
 
 </body>
 </html>
