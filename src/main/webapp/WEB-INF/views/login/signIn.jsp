@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>signIn.jsp</title>
+<title>동아줄 : 로그인</title>
 <link rel="stylesheet" href="/resources/css/login.css">
 </head>
 <script type="text/javascript">

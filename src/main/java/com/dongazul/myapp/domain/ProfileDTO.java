@@ -19,4 +19,4 @@ public class ProfileDTO {
 	private String hobby2;
 	private String hobby3;
 
-} // end class
+} // end class 

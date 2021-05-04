@@ -7,7 +7,7 @@
             <head>
 
                 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <title>프로필 수정</title>
+                <title>동아줄 : 프로필 수정</title>
                 
                 <link rel="stylesheet" href="/resources/signUp.css">
             </head>
@@ -40,7 +40,7 @@
                         <div class="login_id">
                             <label class="control-label" for="gender">Gender</label>
                             <br>
-                            <select name="gender" class="form-control" id="gender" value=>
+                            <select name="gender" class="form-control" id="gender">
                                 <option value="M">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M</option>
                                 <option value="W">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W</option>
                             </select>

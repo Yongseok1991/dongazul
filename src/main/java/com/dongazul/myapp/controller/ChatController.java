@@ -16,6 +16,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class ChatController {
 
+
 	@PostMapping("/open")
 	public void openPost() {
 		log.debug("openPost() invoked.");
@@ -24,12 +25,14 @@ public class ChatController {
 	
 	@GetMapping("/rooms")
 	public void roomsGet() {
+		
 		log.debug("roomsGet() invoked.");
 	
 	} // roomsGet
 	
 	@GetMapping("/window")
 	public void windowGet(String message) {
+		
 		log.debug("windowGet() invoked.");
 
 	} // windowGet

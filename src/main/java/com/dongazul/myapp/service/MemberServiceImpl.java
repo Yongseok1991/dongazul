@@ -1,7 +1,5 @@
 package com.dongazul.myapp.service;
 
-
-
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	MemberMapper mapper;
-	
 	
 	// 회원가입
 	@Override
@@ -44,30 +41,38 @@ public class MemberServiceImpl implements MemberService {
 	// 이메일 중복 체크
 	@Override
 	public int emailCheck(MemberVO vo) throws Exception {
+		
 		log.info("emailCheck(vo) invoked.");
+		
 		int result = this.mapper.emailCheck(vo);
 		return result;
-	}
+	} // emailCheck
+	
 	// 회원정보수정
 	@Override
 	public void memberUpdate(MemberVO vo) throws Exception{
+		
+		log.info("memberUpdate(vo) invoked.");
+		
 		this.mapper.memberUpdate(vo);
-	}
+	} // memberUpdate
 	
 	// 회원탈퇴
 	public void memberDelete(MemberVO vo) throws Exception {
+		
+		log.info("memberDelete(vo) invoked.");
+		
 		this.mapper.memberDelete(vo);
-	}
+	} // memberDelete
 	
 	// 이메일 찾기
 	@Override
 	public String findId(Integer phonenumber) throws Exception {
-		log.debug("findId(vo) invoked.");
+		
+		log.debug("findId(phonenumber) invoked.");
 		
 		return this.mapper.findId(phonenumber);
-		
 	} // findId
-	
 	
 	// 비밀번호 찾기
 	@Override
@@ -75,11 +80,16 @@ public class MemberServiceImpl implements MemberService {
 		log.debug("findPw(vo) invoked.");
 		
 		return this.mapper.findPw(email);
-		
-	}
-
+	} // findPw
+	
+	// 자동로그인 기능이 on 되어있는 경우, 이 정보(자동로그인)를 업데이트.
 	@Override
-	public void updateMemberWithRememberMe(String email, String rememberme, Date rememberage) throws Exception {
+	public void updateMemberWithRememberMe(
+			String email,
+			String rememberme, 
+			Date rememberage
+			) throws Exception {
+		
 		log.debug("updateMemberWithRememberMe(email, rememberme, rememberage) invoked.");
 		
 		log.info("\t+ userid: " + email);
@@ -92,15 +102,19 @@ public class MemberServiceImpl implements MemberService {
 				updateMemberWithRememberMe(email, rememberme, rememberage);
 		
 		log.info("\t+ modifiedUsers: " + modifiedMember);
-	}
-
+	} // updateMemberWithRememberMe
+	
+	// 자동로그인 쿠키값(=세션ID)으로 사용자를 찾기
 	@Override
 	public MemberVO selectMemberWithRememberMe(String rememberme) throws Exception {
+		
 		log.debug("selectMemberWithRememberMe(rememberme) invoked.");
 		
-	MemberVO signIn = this.mapper.selectMemberWithRememberMe(rememberme);
+		MemberVO signIn = this.mapper.selectMemberWithRememberMe(rememberme);
+	
 		log.info("\t+ user: " + signIn);
 		
 		return signIn;
 	} // findPw
+	
 } // end class

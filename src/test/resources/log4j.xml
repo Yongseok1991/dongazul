@@ -48,7 +48,7 @@
    </logger>
    
    <logger name="jdbc.audit">
-      <level value="warn" />
+      <level value="debug" />
    </logger>
    
    <logger name="jdbc.resultset">
@@ -60,7 +60,7 @@
    </logger>
 
    <logger name="jdbc.connection">
-      <level value="warn" />
+      <level value="debug" />
    </logger> 
 
 	<!-- Root Logger -->

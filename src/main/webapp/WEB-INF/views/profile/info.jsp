@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>info.jsp</title>
+<title>동아줄 : 내 프로필</title>
 
 <!--fontawesome ---->
 <script src="https://kit.fontawesome.com/dc299fac74.js" crossorigin="anonymous"></script>

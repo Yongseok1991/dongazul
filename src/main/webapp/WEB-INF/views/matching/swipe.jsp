@@ -53,10 +53,7 @@
                     <h2>21</h2>
                 </div>
                 <div class="photo-bio">
-                    <h1>/WEB-INF/views/swipe.jsp</h1>ㄹㅁㅇㄴㄹㅁㄴㅇㄹ
-					ㅁㄴㅇㄹㄴㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㄹㅇ
-					ㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㄹㅁㄴㄹㄴㅁㄹㄴㅁㅇㄹㄴㅇㅁㄹㄴㅁㄹㄴㅁㄹ
-					
+                    <h1>/WEB-INF/views/swipe.jsp</h1>
 					<div>
 						<!-- 관심사 넣어주기 -->
 						체크드박스로 자기 관심사 만들어 넣어줘야함 
@@ -97,15 +94,7 @@
 			<input type="submit" value="회원탈퇴">
 	 </form>
 	 
-	
-	 
-	  <form action="/profile/create" method="get">
-	 		<input type="hidden" value="${member.email}">
-			<input type="submit" value="프로필 생성">
-	 </form>
-     
-     
-    
+
      
 </body>
 </html>

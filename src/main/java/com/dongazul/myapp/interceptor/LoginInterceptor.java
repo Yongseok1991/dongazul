@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-
-
 @Log4j
 @NoArgsConstructor	
 
@@ -38,13 +36,12 @@ public class LoginInterceptor
 	@Setter(onMethod_= {@Autowired})
 	private ProfileService service;
 	
-	
-	
 	@Override
 	public boolean preHandle(
 			HttpServletRequest req, 
 			HttpServletResponse res, 
 			Object handler) throws Exception {
+		
 		log.debug("==================================================");
 		log.debug("preHandle(req, res, handler) invoked.");
 		log.debug("==================================================");
@@ -65,6 +62,7 @@ public class LoginInterceptor
 			Object handler,
 			ModelAndView modelAndView
 			) throws Exception {
+		
 		log.debug("==================================================");
 		log.debug("postHandle(req, res, handler, modelAndView) invoked.");
 		log.debug("==================================================");
@@ -116,9 +114,7 @@ public class LoginInterceptor
 				
 				if(profile == null) {
 					res.sendRedirect("/profile/create");
-					
 				} else {
-				
 					res.sendRedirect(originRequest);
 					
 					log.info("\t+ origin URI로 리다이렉션 수행..");
@@ -136,20 +132,10 @@ public class LoginInterceptor
 			} // if-else
 			
 		} else {
+			
 			log.info("\t+ Redirected into /login/signIn...");
 			res.sendRedirect("/login/signIn");
-		}
+		} // if-else
 	} // postHandle
-	
-	@Override
-	public void afterCompletion(
-			HttpServletRequest req, 
-			HttpServletResponse res, 
-			Object handler, Exception ex) throws Exception {
-		log.debug("==================================================");
-		log.debug("afterCompletion(req, res, handler, e) invoked.");
-		log.debug("==================================================");
-		
-	} // afterCompletion
 	
 } // end class

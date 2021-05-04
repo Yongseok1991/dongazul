@@ -14,6 +14,7 @@ public interface MemberService {
 	
 	//이메일 중복 체크
 	public int emailCheck(MemberVO vo) throws Exception;
+	
 	// 회원 정보 수정
 	public void memberUpdate(MemberVO vo) throws Exception;
 	
@@ -26,12 +27,14 @@ public interface MemberService {
 	// 비밀번호 찾기
 	public String findPw(String email) throws Exception;
  
-	// 자동로그인(Remember-Me) 기능이 on 되어있는 경우, 이 정보(자동로그인)를 업데이트.
+	// 자동로그인 기능이 on 되어있는 경우, 이 정보(자동로그인)를 업데이트.
 	public abstract void updateMemberWithRememberMe(
-					String email, String rememberme, Date rememberage) 
-							throws Exception;
+					String email, 
+					String rememberme, 
+					Date rememberage
+					) throws Exception;
 			
-	// 자동로그인 쿠키값(=세션ID)로 사용자를 찾아내는 메소드
+	// 자동로그인 쿠키값(=세션ID)으로 사용자를 찾기
 	public abstract MemberVO selectMemberWithRememberMe(String rememberme)
 				throws Exception;
 } // end class

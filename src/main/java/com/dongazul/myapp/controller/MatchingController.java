@@ -11,41 +11,33 @@ import com.dongazul.myapp.service.ProfileService;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-
-
 @Log4j
 @NoArgsConstructor
 
-
-@RequestMapping("/matching")
-
 @Controller
+@RequestMapping("/matching")
 public class MatchingController {
 
 	@Autowired
 	ProfileService profileService;
 	
+	// 메인화면 보여주기
 	@GetMapping("/swipe")
 	public void swipeGet() throws Exception {
-		log.debug("swipeGet() invoked.");
 		
+		log.debug("swipeGet() invoked.");
 	} // swipeGet
-	
 	
 	@GetMapping("/profile")
 	public void profileGet() {
-		log.debug("profileGet() invoked.");
 		
-//		return "matching/profile";
+		log.debug("profileGet() invoked.");
 	} // profileGet
-	
 	
 	@PostMapping("/like")
 	public void likePost() {
-		log.debug("likePost() invoked.");
 		
-//		return "matching/like";
+		log.debug("likePost() invoked.");
 	} // likePost
-	
-	
+
 } // end class

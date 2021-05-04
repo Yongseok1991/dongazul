@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dongazul.myapp.domain.LoginDTO;
 import com.dongazul.myapp.domain.MemberVO;
-import com.dongazul.myapp.domain.ProfileDTO;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;

@@ -2,6 +2,7 @@ package com.dongazul.myapp.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -39,6 +40,11 @@ public class EchoHandler extends TextWebSocketHandler{
     			) throws Exception {
     	
     	log.debug("handleTextMessage(session, message) invoked.");
+    	 Map<String,Object> map = session.getAttributes();
+
+    	String email = (String) map.get("member.email");
+    	
+    	System.out.println("\t+ email: " + email);
     	
         //모든 유저에게 메시지 출력
         for(WebSocketSession sess : sessionList){

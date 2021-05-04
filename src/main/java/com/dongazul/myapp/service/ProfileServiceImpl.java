@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @NoArgsConstructor
+
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
@@ -20,14 +21,13 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Transactional
 	@Override
-	public boolean craeteProfile(ProfileDTO dto) throws Exception {
+	public void craeteProfile(ProfileDTO dto) throws Exception {
 		
 		log.info("craeteProfile(dto) invoked.");
-	
+		
 			this.mapper.insertInterests(dto);
 			this.mapper.insertProfile(dto);
-			return true;
-
+		
 	} // createProfile
 
 	@Override
@@ -37,10 +37,11 @@ public class ProfileServiceImpl implements ProfileService {
 		log.info("\t+ email :" + email);
 		
 		return this.mapper.selectProfile(email);
-	}
+	} // getProfile
 
 	@Override
 	public boolean modifyProfile(ProfileDTO dto) throws Exception {
+		
 		log.info("modifyProfile(dto) invoked.");
 		
 		this.mapper.updateProfile(dto);
@@ -48,6 +49,5 @@ public class ProfileServiceImpl implements ProfileService {
 		
 		return true;
 	} // modifyProfile
-
 
 } // end class

@@ -22,7 +22,7 @@ public class CommonExceptionHandler {
 			
 			log.error("1. Exception Type: " + e.getClass().getName());
 			log.error("2. Exception Message: " + e.getMessage());
-			model.addAttribute("EXCEPTION", e);
+			model.addAttribute("EXCEPTION", e);  
 			
 			return "/error/404Page";
 		

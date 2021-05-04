@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findPw.jsp</title>
+<title>동아줄 : 비밀번호 찾기</title>
 </head>
 <body>
 	<h1>비밀번호 찾기 화면</h1>

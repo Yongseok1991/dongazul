@@ -12,13 +12,12 @@
 <title>findIdResult.jsp</title>
 </head>
 <body>
-	<h1>아이디 찾기 결과</h1>
-	
-	입력한 전화번호 : ${memberVO.phonenumber}<br>
+	<h1>이메일 찾기 결과</h1>
+
 	이메일 : ${FIND} 
 	<hr>
 	<form action="/login/signIn" method="get">
-		<input type="submit" value="홈으로 돌아가기">
+		<input type="submit" value="Back to Login">
 	</form>
 </body>
 </html>

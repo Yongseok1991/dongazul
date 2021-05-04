@@ -7,7 +7,7 @@
         <head>
         
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <title>회원가입</title>
+            <title>동아줄 : 프로필생성</title>
 
         </head>
         
@@ -61,7 +61,7 @@
             <button class="picture_submit">미디어 추가</button>
         
                 <form action="/profile/create" method="post">
-                    <div class="picture_container"></div>
+                    
                         
         			<input class="form-control" name="email" type="hidden" value="${member.email}">
                     <div class="form-group has-feedback">

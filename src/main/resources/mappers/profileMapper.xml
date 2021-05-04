@@ -6,20 +6,21 @@
   
 <mapper namespace="com.dongazul.myapp.mapper.ProfileMapper">
 
-	<!--프로필생성 -->
+	<!--프로필생성(profile) -->
     <insert 
     	parameterType="com.dongazul.myapp.domain.ProfileDTO"
     	id="insertProfile">
     	
        INSERT INTO profile (email, nickname, age, gender, zone, introduce)
-       VALUES ( #{email}, #{nickname}, #{age}, #{gender}, #{zone}, #{introduce} )
+       VALUES ( #{email}, #{nickname}, #{age}, #{gender}, #{zone}, #{introduce})
     </insert>
     
+    <!-- 프로필 생성(interests) -->
     <insert
     	parameterType="com.dongazul.myapp.domain.ProfileDTO"
     	id="insertInterests">
-    	INSERT INTO interests ( email , hobby1, hobby2, hobby3)
-       VALUES ( #{email}, #{hobby1}, #{hobby2}, #{hobby3} )
+    	INSERT INTO interests ( email, hobby1, hobby2, hobby3 )
+       VALUES ( #{email}, #{hobby1}, #{hobby2}, #{hobby3} ) 
     </insert>
     
     <!-- 프로필 조회 -->
@@ -49,7 +50,8 @@
       WHERE
          email = #{email}
      </update>
-
+	
+     <!-- 프로필 수정(interests) -->	
      <update id="updateInterest">
       UPDATE interests
       SET

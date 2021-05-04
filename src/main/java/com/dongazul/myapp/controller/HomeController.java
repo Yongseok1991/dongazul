@@ -13,11 +13,11 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class HomeController {
 
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
+		
 		log.info("home() invoked");
 		
 		return "home";
-	}
+	} // home
 } // end class
