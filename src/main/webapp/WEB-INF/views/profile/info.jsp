@@ -33,10 +33,12 @@
         <div class="profile-main">
             <div class="photo-name">
                 <div class="photo-pro">
-                    <img src="http://www.newsworks.co.kr/news/photo/202011/500020_390256_4135.jpg" alt="img1" class="img1">
+                	<c:if test="${ profile != null }">
+                    <img src="${ profile.imageRoot }" alt="img1" class="img1">
+                    </c:if>
                 </div>
                 <h1 class="values">
-                    ${__PROFILE__.nickname}, &nbsp;<span>${__PROFILE__.age}</span>
+                    ${profile.nickname}, &nbsp;<span>${profile.age}</span>
                 </h1>
                 
                 <h3>좋아요</h3>

@@ -16,6 +16,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+<style>
+	.thumbImg {
+	}
+
+</style>
+
 <!--fontawesome ---->
 <script src="https://kit.fontawesome.com/dc299fac74.js" crossorigin="anonymous"></script>
 
@@ -53,7 +59,10 @@
                     <h2>21</h2>
                 </div>
                 <div class="photo-bio">
-                    <h1>/WEB-INF/views/swipe.jsp</h1>
+                    <h1>/WEB-INF/views/swipe.jsp</h1>ㄹㅁㅇㄴㄹㅁㄴㅇㄹ
+					ㅁㄴㅇㄹㄴㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㄹㅇ
+					ㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㄹㅁㄴㄹㄴㅁㄹㄴㅁㅇㄹㄴㅇㅁㄹㄴㅁㄹㄴㅁㄹ
+					
 					<div>
 						<!-- 관심사 넣어주기 -->
 						체크드박스로 자기 관심사 만들어 넣어줘야함 
@@ -90,11 +99,26 @@
      
      
      
+     
+     
      <form action="/member/dropOut" method="get">
 			<input type="submit" value="회원탈퇴">
 	 </form>
 	 
-
+	
+	 <c:if test="${ profile != null }">
+	 	<form action="/profile/update" method="get">
+		 		<input type="hidden" value="${member.email}">
+				<input type="submit" value="프로필 변경">
+		 </form>
+		 <div>
+	     	<p>내 사진</p>
+	     	<img src="${ profile.imageRoot }" class="thumbImg">
+	     </div>
+		  
+     </c:if>
+     
+    
      
 </body>
 </html>

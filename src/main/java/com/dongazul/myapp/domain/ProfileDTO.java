@@ -15,6 +15,10 @@ public class ProfileDTO {
 	private String gender;
 	private String zone;
 	private String introduce;
+	
+	private String imageRoot;
+	private String imgThumbImg;
+	
 	private String hobby1;
 	private String hobby2;
 	private String hobby3;

@@ -11,8 +11,8 @@
     	parameterType="com.dongazul.myapp.domain.ProfileDTO"
     	id="insertProfile">
     	
-       INSERT INTO profile (email, nickname, age, gender, zone, introduce)
-       VALUES ( #{email}, #{nickname}, #{age}, #{gender}, #{zone}, #{introduce})
+       INSERT INTO profile (email, nickname, age, gender, zone, introduce, imageRoot, imgThumbImg)
+       VALUES ( #{email}, #{nickname}, #{age}, #{gender}, #{zone}, #{introduce}, #{imageRoot}, #{imgThumbImg} )
     </insert>
     
     <!-- 프로필 생성(interests) -->

@@ -1,16 +1,22 @@
 package com.dongazul.myapp.controller;
 
+import java.io.File;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dongazul.myapp.domain.ProfileDTO;
 import com.dongazul.myapp.service.ProfileService;
+import com.dongazul.myapp.utils.UploadFileUtils;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -22,10 +28,15 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/profile")
 public class ProfileController {
 	
+	public static final String profileKey = "profile";
+	
 	@Autowired
 	ProfileService service;
 	
-	private static final String saveDir = "/resources/upload/file";
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
+//	private static final String saveDir = "/resources/upload/file";
 	
 	@GetMapping("/create")
 	public void createGet() {
@@ -34,42 +45,26 @@ public class ProfileController {
 	} // createGet
 	
 	@PostMapping("/create")
-	public String createPost(ProfileDTO dto) throws Exception {
+	public String createPost(ProfileDTO dto, MultipartFile file, Model model) throws Exception {
 		
 		log.debug("createPost() invoked");
-//		MultipartFile multipart = dto.getMultipart();
-//		
-//		Date now = new Date();
-//		
-//		DateFormat formatter = new SimpleDateFormat("yyyyMMdd-HHmmss");
-//		String yyyyMMdd = formatter.format(now); 
-//		int random = (int)(Math.random()*1000);
-//		
-//		if(multipart.isEmpty()) {
-//			
-//			try {
-//				File lastUploadDir = new File(saveDir + "/" + yyyyMMdd);
-//				
-//				if(!lastUploadDir.exists()) {
-//					lastUploadDir.mkdir();
-//				}
-//				String filename = multipart.getOriginalFilename();
-//				FileOutputStream fos = new FileOutputStream(lastUploadDir + "/" + filename+random);
-//				BufferedOutputStream bos = new BufferedOutputStream(fos);
-//				String imageroot = lastUploadDir + "/" + filename+random;
-//				dto.setImageroot(imageroot);
-//				try(fos; bos;) {
-//					
-//					byte[] fileData = multipart.getBytes();
-//					bos.write(fileData);
-//					
-//					bos.flush();
-//				} // try-with-resources
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-
+		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			fileName = UploadFileUtils.FileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		} // if-else
+		
+		
+		dto.setImageRoot(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		
+		log.info(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		dto.setImgThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
 		this.service.craeteProfile(dto);
 		
 		return "redirect:/matching/swipe";

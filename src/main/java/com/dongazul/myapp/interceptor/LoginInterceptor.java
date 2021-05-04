@@ -12,6 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dongazul.myapp.controller.LoginController;
+import com.dongazul.myapp.controller.ProfileController;
 import com.dongazul.myapp.domain.MemberVO;
 import com.dongazul.myapp.domain.ProfileDTO;
 import com.dongazul.myapp.service.ProfileService;
@@ -29,6 +30,7 @@ public class LoginInterceptor
 	
 	private static final String loginKey = LoginController.loginKey;	
 	private static final String rememberMeKey = "__REMEMBER_ME__";
+	private static final String profileKey = ProfileController.profileKey;
 	
 	private static final String requestURIKey = AuthInterceptor.requestURIKey;
 	private static final String queryStringKey = AuthInterceptor.queryStringKey;
@@ -62,7 +64,6 @@ public class LoginInterceptor
 			Object handler,
 			ModelAndView modelAndView
 			) throws Exception {
-		
 		log.debug("==================================================");
 		log.debug("postHandle(req, res, handler, modelAndView) invoked.");
 		log.debug("==================================================");
@@ -98,6 +99,12 @@ public class LoginInterceptor
 				log.info("\t+ 응답문서 헤더에, 자동로그인 쿠키설정 완료");
 			} // Remember-Me 기능을 on 시켰다면...
 			
+			if(profile == null) {
+				res.sendRedirect("/profile/create");
+			} else {
+				mySession.setAttribute(profileKey, profile);
+			}
+			
 			String originRequestURI = 
 				(String) mySession.getAttribute(requestURIKey);
 			
@@ -112,30 +119,22 @@ public class LoginInterceptor
 								 "?"+originQueryString : ""
 					);
 				
-				if(profile == null) {
-					res.sendRedirect("/profile/create");
-				} else {
+				
 					res.sendRedirect(originRequest);
 					
 					log.info("\t+ origin URI로 리다이렉션 수행..");
 					log.info("\t\t : " + originRequest);
-				} // if-else
 			} else { 
 
-				if(profile == null) {
-					res.sendRedirect("/profile/create");
-				} else {
 					res.sendRedirect("/matching/swipe");
 					
 					log.info("\t+ Redirectd into /matching/swipe ....");
-				} // if-else
 			} // if-else
 			
 		} else {
-			
 			log.info("\t+ Redirected into /login/signIn...");
 			res.sendRedirect("/login/signIn");
-		} // if-else
+		}
 	} // postHandle
 	
 } // end class

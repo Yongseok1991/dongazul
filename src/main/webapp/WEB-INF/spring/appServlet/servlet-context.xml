@@ -6,10 +6,12 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 		
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
@@ -54,6 +56,19 @@
 	<beans:bean 
 		id="authInterceptor" 
 		class="com.dongazul.myapp.interceptor.AuthInterceptor"/>-->
+		
+	
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:\opt\eclipse\workspace\JEE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\dongazul\resources" />
+	</beans:bean>
+	
+	<!-- 일반 파일 업로드 경로 -->
+	<mvc:resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	 	<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
 	
 	<mvc:interceptors>
 
@@ -78,7 +93,7 @@
 	</mvc:interceptors>
 	
 	<!-- Spring's multipart resolver -->
-	<beans:bean 
+	<!-- <beans:bean 
 		id="multipartResolver" 
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		primary="true">
@@ -87,6 +102,6 @@
 		<beans:property name="maxUploadSizePerFile" value="2097152"/>				
 		<beans:property name="maxInMemorySize" value="1048576"/>					
 		<beans:property name="preserveFilename" value="true"/>
-	</beans:bean>
+	</beans:bean> -->
 		
 </beans:beans>

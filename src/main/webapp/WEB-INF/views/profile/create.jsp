@@ -7,7 +7,7 @@
         <head>
         
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <title>동아줄 : 프로필생성</title>
+            <title>회원가입</title>
 
         </head>
         
@@ -25,6 +25,16 @@
                         $('#text_cnt').html("(500 / 500)");
                     }
                 });
+                
+                $('#myPicture').change(function(){
+                		if(this.files && this.files[0]) {
+                			var reader = new FileReader;
+                			reader.onload = function(data){
+                				$('.picture_box img').attr('src', data.target.result).width(110);
+                			}
+                			reader.readAsDataURL(this.files[0]);
+                		}
+                });
         
                
             })
@@ -35,33 +45,19 @@
             <div class="background">
         
             <section id="container">
-        
+        <form action="/profile/create" method="post" enctype="multipart/form-data">
             <div class="pictures">
-                <div class="picture_box"><button class="addPicture">
+                <div class="picture_box"><img src="" />
                     <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
                 </button></div>    
-                <div class="picture_box"><button class="addPicture">
-                    <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
-                </button></div>
-                <div class="picture_box"><button class="addPicture">
-                    <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
-                </button></div> 
-                <div style="height: 20px"></div>
-                <div class="picture_box"><button class="addPicture">
-                    <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
-                </button></div>    
-                <div class="picture_box"><button class="addPicture">
-                    <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
-                </button></div>    
-                <div class="picture_box"><button class="addPicture">
-                    <svg width="35" height="35" ><path d="M9 17.5 H26, M17.5 9 V26" stroke="#f0f0f0" stroke-width="2.7" stroke-linejoin="round"/></svg>
-                </button></div> 
+                <input type="file" id="myPicture" name="file">
             </div>
+            <%= request.getRealPath("/") %>
             <br>
-            <button class="picture_submit">미디어 추가</button>
+            <!-- <button type="submit" class="picture_submit">미디어 추가</button> -->
         
-                <form action="/profile/create" method="post">
-                    
+                
+                    <div class="picture_container"></div>
                         
         			<input class="form-control" name="email" type="hidden" value="${member.email}">
                     <div class="form-group has-feedback">

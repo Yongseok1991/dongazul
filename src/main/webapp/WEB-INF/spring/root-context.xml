@@ -80,6 +80,8 @@
   <aop:aspectj-autoproxy />
   <tx:annotation-driven />
   
+  <context:component-scan base-package="com.dongazul.myapp.utils" />
+  
   <bean 
       id="transactionManager"
       class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
