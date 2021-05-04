@@ -41,12 +41,7 @@ public class LoginController {
 	@Autowired
 	ProfileService profileservice;
 	
-	// 로그인 화면
-	@GetMapping("/signIn")
-	public void signInGet() {
-		
-		log.debug("signInGet() invoked.");
-	} // signInGet
+
 	
 	// 로그인 처리
 	@PostMapping("/signInPost")
@@ -111,7 +106,7 @@ public class LoginController {
 			updateMemberWithRememberMe(signIn.getEmail(), null, null);			
 		} // if
 		
-		return "redirect:/login/signIn";
+		return "redirect:/";
 	} // signOutPost
 	
 	// 아이디 찾기 화면

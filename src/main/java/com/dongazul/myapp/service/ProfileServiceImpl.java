@@ -40,14 +40,14 @@ public class ProfileServiceImpl implements ProfileService {
 	} // getProfile
 
 	@Override
-	public boolean modifyProfile(ProfileDTO dto) throws Exception {
+	@Transactional
+	public void modifyProfile(ProfileDTO dto) throws Exception {
 		
 		log.info("modifyProfile(dto) invoked.");
 		
 		this.mapper.updateProfile(dto);
 		this.mapper.updateInterest(dto);
 		
-		return true;
 	} // modifyProfile
 
 } // end class

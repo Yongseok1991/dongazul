@@ -11,6 +11,6 @@ public interface ProfileService {
 	public abstract ProfileDTO getProfile(String email) throws Exception;
 	
 	// 프로필 수정
-	public abstract boolean modifyProfile(ProfileDTO dto) throws Exception;
+	public abstract void modifyProfile(ProfileDTO dto) throws Exception;
 
 } // end interface

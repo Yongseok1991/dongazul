@@ -70,9 +70,9 @@ public class AuthInterceptor
 				} // if
 			} // if
 		 
-			res.sendRedirect("/login/signIn");
+			res.sendRedirect("/");
 			
-			log.info("\t+ Redirected into /login/signIn");
+			log.info("\t+ Redirected into /");
 
 			return false;
 		} // if

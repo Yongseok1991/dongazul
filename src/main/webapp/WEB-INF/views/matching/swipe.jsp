@@ -59,9 +59,7 @@
                     <h2>21</h2>
                 </div>
                 <div class="photo-bio">
-                    <h1>/WEB-INF/views/swipe.jsp</h1>ㄹㅁㅇㄴㄹㅁㄴㅇㄹ
-					ㅁㄴㅇㄹㄴㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㄹㅇ
-					ㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㄹㅁㄴㄹㄴㅁㄹㄴㅁㅇㄹㄴㅇㅁㄹㄴㅁㄹㄴㅁㄹ
+                    <h1>/WEB-INF/views/swipe.jsp</h1>
 					
 					<div>
 						<!-- 관심사 넣어주기 -->
@@ -87,8 +85,6 @@
         </div>
     </div>
 		
-	
-
 	<c:if test="${member != null}">
         <div>
             <p>${member.email}님 환영합니다.</p>
@@ -98,25 +94,7 @@
      </c:if>
      
      
-     
-     
-     
-     <form action="/member/dropOut" method="get">
-			<input type="submit" value="회원탈퇴">
-	 </form>
 	 
-	
-	 <c:if test="${ profile != null }">
-	 	<form action="/profile/update" method="get">
-		 		<input type="hidden" value="${member.email}">
-				<input type="submit" value="프로필 변경">
-		 </form>
-		 <div>
-	     	<p>내 사진</p>
-	     	<img src="${ profile.imageRoot }" class="thumbImg">
-	     </div>
-		  
-     </c:if>
      
     
      

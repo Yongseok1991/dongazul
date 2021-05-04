@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> -->
 
 <!DOCTYPE html>
 <html>
@@ -10,14 +10,23 @@
 <meta charset="UTF-8">
 
 <title>findIdResult.jsp</title>
+<link rel="stylesheet" href="/resources/css/findIdResult.css">
 </head>
 <body>
-	<h1>이메일 찾기 결과</h1>
 
-	이메일 : ${FIND} 
-	<hr>
-	<form action="/login/signIn" method="get">
-		<input type="submit" value="Back to Login">
-	</form>
+	<div class="wrap">
+		<div class="box">
+			<h1>이메일</h1>
+			
+			<div class="result">
+			
+			${FIND} 
+			</div>
+			<hr>
+			<form action="/" method="get">
+				<input type="submit" value="홈으로 돌아가기" class="back">
+			</form>
+		</div>
+	</div>
 </body>
 </html>

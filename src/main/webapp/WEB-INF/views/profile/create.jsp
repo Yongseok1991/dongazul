@@ -7,7 +7,7 @@
         <head>
         
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <title>회원가입</title>
+            <title>동아줄 : 프로필 생성</title>
 
         </head>
         

@@ -9,12 +9,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<title>동아줄 : 회원가입</title>
 
-	<style>
-		body {
-			background-image: url(/resources/backmain.jpg);
-			background-repeat: no-repeat;
-		}
-	</style>
 	<link rel="stylesheet" href="/resources/css/signUp.css">
 </head>
 
@@ -121,7 +115,7 @@
 	<section class="wrap">
 	 <div class="login">
             <h2>Sign-Up</h2>
-            
+        <div id="wrap_child">    
 		<form action="/member/signUp" method="POST" id="regForm">
 			<div class="login_id">
 				<label class="control-label" for="email">E-mail</label>
@@ -147,6 +141,7 @@
 				<button class="submit" type="submit" id="submit">Sign-Up</button>
 			</div>
 		</form>
+		</div>
 		</div>
 	</section>
 

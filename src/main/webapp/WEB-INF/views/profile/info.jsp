@@ -24,11 +24,7 @@
 
     <div id="wrapper"> 
 
-        <nav class="navbar">
-            <a class="fas fa-fire" href="#"></a> <!-- 누르기 기능 삭제 -->
-            <a class="fas fa-comments" href="/chat/rooms"></a>
-            <a class="fas fa-user" href="/profile/info"></a>
-        </nav>
+        
 
         <div class="profile-main">
             <div class="photo-name">
@@ -66,6 +62,9 @@
             <input type="submit" value="←">
         </form>
         
+        <form action="/member/dropOut" method="get">
+			<input type="submit" value="회원탈퇴">
+	 </form>
     </div>  
 
 </body>

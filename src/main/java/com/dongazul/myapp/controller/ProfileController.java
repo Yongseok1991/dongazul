@@ -36,8 +36,6 @@ public class ProfileController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-//	private static final String saveDir = "/resources/upload/file";
-	
 	@GetMapping("/create")
 	public void createGet() {
 		
@@ -45,28 +43,52 @@ public class ProfileController {
 	} // createGet
 	
 	@PostMapping("/create")
-	public String createPost(ProfileDTO dto, MultipartFile file, Model model) throws Exception {
+	public String createPost(
+			ProfileDTO dto, 
+			MultipartFile file, 
+			RedirectAttributes rttrs
+			) throws Exception {
 		
 		log.debug("createPost() invoked");
 		
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";
-		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String imgUploadPath = 
+				uploadPath + File.separator + "imgUpload";
+		
+		String ymdPath = 
+				UploadFileUtils.calcPath(imgUploadPath);
+		
 		String fileName = null;
 		
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			fileName = UploadFileUtils.FileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			
+			fileName = 
+					UploadFileUtils.FileUpload(
+							imgUploadPath, 
+							file.getOriginalFilename(), 
+							file.getBytes(), 
+							ymdPath
+							);
+			
 		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			
+			fileName = 
+					uploadPath + File.separator + "images" 
+							   + File.separator + "none.png";
 		} // if-else
 		
 		
 		dto.setImageRoot(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		
 		log.info(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		dto.setImgThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		dto.setImgThumbImg(
+				File.separator + "imgUpload" + ymdPath + File.separator 
+							   + "s" + File.separator + "s_" + fileName
+				);
 		
 		this.service.craeteProfile(dto);
 		
+		rttrs.addFlashAttribute("msg", "프로필 생성이 완료되었습니다.");
 		return "redirect:/matching/swipe";
 	} // createPost
 	
@@ -82,12 +104,13 @@ public class ProfileController {
 		ProfileDTO profile = this.service.getProfile(email);
 		
 		if(profile == null) {
+
+			rttrs.addAttribute("email", email);
 			
-//			rttrs.addFlashAttribute("email", email); 
-			rttrs.addAttribute("email", email); // querystring 전송파라미터를 유지 
 			return "redirect:/profile/create";
 		} // if
-		session.setAttribute("__PROFILE__", profile);
+		
+		session.setAttribute(profileKey, profile);
 		
 		return "profile/info";
 	} // infoGet
@@ -103,10 +126,10 @@ public class ProfileController {
 		
 		log.debug("updatePost() invoked.");
 		
-		if(this.service.modifyProfile(profile)) {
-			
-			rttrs.addFlashAttribute("msg", "수정이 완료되었습니다.");
-		} // if
+		this.service.modifyProfile(profile);
+		
+		rttrs.addFlashAttribute("msg", "수정이 완료되었습니다.");
+	
 		
 		return "redirect:/matching/swipe";
 	} // updatePost

@@ -41,8 +41,8 @@ public class SampleTXServiceTests {
 		log.debug("testXXX() invoked.");
 		ProfileDTO profile = new ProfileDTO();
 		
-		profile.setEmail("arr0998@naver.com");
-		profile.setAge(23);
+		profile.setEmail("arr1234@naver.com");
+		profile.setAge(23222222);
 		profile.setGender("W");
 		profile.setNickname("용돌");
 		profile.setIntroduce("안녕하세요");

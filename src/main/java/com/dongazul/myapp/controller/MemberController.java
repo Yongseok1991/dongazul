@@ -59,7 +59,7 @@ public class MemberController {
 			throw new RuntimeException();
 		} // try-catch
 		
-		return "redirect:/login/signIn";
+		return "redirect:/";
 	} // signUpPost
 	
 	//이메일 인증 전송
@@ -93,7 +93,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/login/signIn";
+		return "redirect:/";
 	} // infoPost
 	
 	// 회원탈퇴화면 보여주기
@@ -124,14 +124,14 @@ public class MemberController {
 			
 			rttrs.addFlashAttribute("msg", false);
 			
-			return "redirect:/member/dropout";
+			return "redirect:/member/dropOut";
 		} // if
 		
 		service.memberDelete(vo);
 		
 		session.invalidate();
 		
-		return "redirect:/login/signIn";
+		return "redirect:/";
 } // dropOutPost
    
    // 이메일 중복 체크

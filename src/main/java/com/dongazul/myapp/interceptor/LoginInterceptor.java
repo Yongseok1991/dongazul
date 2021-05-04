@@ -102,7 +102,9 @@ public class LoginInterceptor
 			if(profile == null) {
 				res.sendRedirect("/profile/create");
 			} else {
+				
 				mySession.setAttribute(profileKey, profile);
+				
 			}
 			
 			String originRequestURI = 
@@ -119,7 +121,6 @@ public class LoginInterceptor
 								 "?"+originQueryString : ""
 					);
 				
-				
 					res.sendRedirect(originRequest);
 					
 					log.info("\t+ origin URI로 리다이렉션 수행..");
@@ -132,8 +133,10 @@ public class LoginInterceptor
 			} // if-else
 			
 		} else {
-			log.info("\t+ Redirected into /login/signIn...");
-			res.sendRedirect("/login/signIn");
+			
+			log.info("\t+ Redirected into /");
+			
+			res.sendRedirect("/");
 		}
 	} // postHandle
 	
